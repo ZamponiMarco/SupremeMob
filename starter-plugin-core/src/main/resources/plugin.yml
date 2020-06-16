@@ -1,0 +1,4 @@
+name: StarterPlugin
+author: jummes
+version: 1.0
+main: com.github.jummes.StarterPlugin
