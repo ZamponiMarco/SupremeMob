@@ -6,17 +6,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.jummes</groupId>
-        <artifactId>starter-plugin</artifactId>
+        <artifactId>starter</artifactId>
         <version>1.0</version>
     </parent>
-    <artifactId>starter-plugin-dist</artifactId>
+    <artifactId>starter-dist</artifactId>
     <url>http://maven.apache.org</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <build>
         <directory>../target</directory>
-        <finalName>spawnme-${project.version}</finalName>
+        <finalName>starter-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -56,8 +56,8 @@
                         <phase>install</phase>
                         <configuration>
                             <target>
-                                <copy file="../target/spawnme-${project.version}.jar"
-                                      tofile="C:\Users\Marco\Desktop\test\plugins\spawnme-${project.version}.jar"/>
+                                <copy file="../target/starter-${project.version}.jar"
+                                      tofile="C:\Users\Marco\Desktop\test\plugins\starter-${project.version}.jar"/>
                             </target>
                         </configuration>
                         <goals>

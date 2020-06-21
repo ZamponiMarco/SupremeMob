@@ -4,16 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.jummes</groupId>
-    <artifactId>starter-plugin</artifactId>
+    <artifactId>starter</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <name>Starter Plugin</name>
+    <name>Starter</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <modules>
-        <module>starter-plugin-core</module>
-        <module>starter-plugin-dist</module>
+        <module>starter-core</module>
+        <module>starter-dist</module>
     </modules>
     <dependencies>
         <dependency>

@@ -1,0 +1,6 @@
+name: Starter
+author: jummes
+version: 1.0
+main: com.github.jummes.starter.Starter
+api-version: 1.13
+commands:

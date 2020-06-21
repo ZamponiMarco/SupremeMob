@@ -6,10 +6,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.jummes</groupId>
-        <artifactId>starter-plugin</artifactId>
+        <artifactId>starter</artifactId>
         <version>1.0</version>
     </parent>
-    <artifactId>starter-plugin-core</artifactId>
+    <artifactId>starter-core</artifactId>
     <version>${project.parent.version}</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
