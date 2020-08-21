@@ -71,7 +71,7 @@
     <dependencies>
         <dependency>
             <groupId>com.github.jummes</groupId>
-            <artifactId>starter-plugin-core</artifactId>
+            <artifactId>starter-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
