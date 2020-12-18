@@ -1,0 +1,9 @@
+name: ${parent.name}
+author: jummes
+version: ${project.version}
+main: ${parent.groupId}.${parent.artifactId}.${parent.name}
+api-version: 1.14
+depend:
+  - SupremeItem
+commands:
+  sm:

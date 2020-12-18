@@ -4,16 +4,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.jummes</groupId>
-    <artifactId>starter</artifactId>
-    <version>1.0</version>
+    <artifactId>suprememob</artifactId>
+    <version>0.1-dev2</version>
     <packaging>pom</packaging>
-    <name>Starter</name>
+    <name>SupremeMob</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <modules>
-        <module>starter-core</module>
-        <module>starter-dist</module>
+        <module>suprememob-core</module>
+        <module>suprememob-craftbukkit_1_14_R1</module>
+        <module>suprememob-craftbukkit_1_15_R1</module>
+        <module>suprememob-craftbukkit_1_16_R1</module>
+        <module>suprememob-craftbukkit_1_16_R2</module>
+        <module>suprememob-craftbukkit_1_16_R3</module>
+        <module>suprememob-dist</module>
     </modules>
     <dependencies>
         <dependency>

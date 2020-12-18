@@ -1,0 +1,169 @@
+messages:
+  command:
+    mob-not-found: "&cMob not found"
+    mob-incorrect-usage: "&cIncorrect usage. Type /sm help to get help."
+gui:
+  mob:
+    type:
+      - "&7&oThe type of the mob."
+    actuators:
+      - "&7&oThe list of actuators associated to the"
+      - "&7&omob."
+    general-options:
+      - "&7&oGeneral options of this mob."
+      - "&7&oIf the mob is normally spawned,"
+      - "&7&olike with /sm spawn command, the"
+      - "&7&osource and the target of all the"
+      - "&7&oplaceholders are the spawned entity."
+  general-options:
+    attribute-options:
+      default-value:
+        - "&7&oIf -1 default values are applied."
+      max-health:
+        - "&7&oThe max health of the mob."
+      movement-speed:
+        - "&7&oThe movement speed of the mob."
+      armor:
+        - "&7&oThe armor of the mob."
+      damage:
+        - "&7&oThe damage of the mob."
+    behavior-options:
+      target-selectors:
+        - "&7&oList of target selectors."
+        - "&7&oIf you want to override default"
+        - "&7&omob behaviour use a ClearTargetSelector"
+        - "&7&oas the first selector in the list."
+      goal-selectors:
+        - "&7&oList of goal selectors."
+        - "&7&oIf you want to override default"
+        - "&7&omob behaviour use a ClearGoalSelector"
+        - "&7&oas the first selector in the list."
+    equipment-options:
+      equipments:
+        - "&7&oThe set of equipment to assign to a mob."
+      allow:
+        - "&7&oWhether default possible equipments should"
+        - "&7&obe allowed or not."
+      equipment:
+        slot:
+          - "&7&oThe slot where to put the equipment."
+        item:
+          - "&7&oThe item to spawn."
+        chance:
+          - "&7&oThe chance to drop the equipment on death."
+    attributes:
+      - "&7&oThe attribute options of the mob."
+    name:
+      - "&7&oThe custom name of the mob."
+      - "&7&oIf set to 'null' default one is used."
+    name-visible:
+      - "&7&oWhether the name is visible."
+    behavior:
+      - "&7&oThe behavior options of the mob."
+    loot:
+      - "&7&oThe drops of the mob."
+    equipment:
+      - "&7&oThe equipment of the mob."
+  target-selector:
+    clear:
+      description:
+        - "&7&oSet a target selector that clears"
+        - "&7&othe already defined selectors in the"
+        - "&7&oentity. For example setting this to"
+        - "&7&oa zombie will make it not target players."
+    nearest:
+      description:
+        - "&7&oSet a target selector that search for"
+        - "&7&othe nearest entity of a certain type."
+      type:
+        - "&7&oThe entity type to target."
+      selectors:
+        - "&7&oThe list of filters to select which"
+        - "&7&oentities can be targeted."
+  goal-selector:
+    speed:
+      - "&7&oThe speed modifier when moving to targeted"
+      - "&7&oentities."
+    condition:
+      - "&7&oThe condition that has to be satisfied to"
+      - "&7&ostart the goal."
+      - "&6&oSource: &eThe SupremeMob."
+      - "&6&oTarget: &eThe SupremeMob target."
+    clear:
+      description:
+        - "&7&oSet a goal selector that clears"
+        - "&7&othe already defined selectors in the"
+        - "&7&oentity. For example setting this to"
+        - "&7&oa zombie will make it not doing anything."
+    melee:
+      description:
+        - "&7&oSet a goal selector that makes the entity"
+        - "&7&oattack his target melee."
+    stroll-land:
+      description:
+        - "&7&oSet a goal selector that makes the entity"
+        - "&7&omoving randomly on land."
+    avoid:
+      description:
+        - "&7&oSet a goal selector that makes the entity"
+        - "&7&omove away from its target."
+      entity:
+        - "&7&oThe class of entities that should be avoided."
+      sprint:
+        - "&7&oThe speed modifier when the target is close."
+      distance:
+        - "&7&oThe maximum distance from the target the entity"
+        - "&7&owill reach."
+  actuator:
+    spawn:
+      description:
+        - "&7&oSet an actuator that activates on the"
+        - "&7&oentity spawn."
+      entity-actions:
+        - "&7&oThe list of entities executed on the"
+        - "&7&oentity on its spawn."
+    damage:
+      description:
+        - "&7&oSet an actuator that activates when"
+        - "&7&othe entity takes damage."
+    hit:
+      description:
+        - "&7&oSet an actuator that activates when"
+        - "&7&othe entity hits someone."
+  loot:
+    default:
+      - "&7&oWhether default mob drops should be included."
+    minecraft:
+      description:
+        - "&7&oSet a drop table that executes a Minecraft"
+        - "&7&oloot table, for more information visit Minecraft"
+        - "&7&owiki."
+      namespace:
+        - "&7&oThe namespace where the loot table is in."
+      name:
+        - "&7&oThe name of the loot table."
+    simple:
+      player:
+        - "&7&oWhether drops should be activated only on"
+        - "&7&oa player kill."
+      drops:
+        - "&7&oThe list of drops."
+    drop:
+      condition:
+        - "&7&oThe condition that has to be satisfied"
+        - "&7&oto spawn the loot."
+      item:
+        description:
+          - "&7&oSet an item drop."
+        item:
+          - "&7&oThe item to drop."
+        count:
+          - "&7&oThe amount of items to drop."
+  additional-tooltips:
+    unknown:
+      - "&c⚠ CAREFUL WHEN MODIFYING THIS ⚠"
+      - "&7&oThe effect of this field is still unknown"
+      - "&7&oas it comes from obfuscated minecraft code"
+      - "&7&oand it has no description. If you find the"
+      - "&7&opurpose of this field tell the dev, if you"
+      - "&7&oare not interested just leave it default."
