@@ -13,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.inventory.EntityEquipment;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.loot.LootContext;
 import org.bukkit.potion.PotionEffect;
@@ -74,7 +75,7 @@ public class MobListener implements Listener {
     public void onMobInteract(PlayerInteractAtEntityEvent e) {
         Mob mob = Mob.fromEntity(e.getRightClicked());
 
-        if (!(e.getRightClicked() instanceof LivingEntity) || mob == null) {
+        if (!(e.getRightClicked() instanceof LivingEntity) || mob == null || e.getHand().equals(EquipmentSlot.OFF_HAND)) {
             return;
         }
 

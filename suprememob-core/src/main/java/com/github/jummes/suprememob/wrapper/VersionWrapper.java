@@ -11,8 +11,8 @@ public class VersionWrapper {
     private static final String TARGET_PREFIX = "TargetSelectorUtils_";
     private static final String GOAL_PREFIX = "GoalSelectorUtils_";
 
-    private GoalSelectorUtils goalSelector;
-    private TargetSelectorUtils targetSelector;
+    private final GoalSelectorUtils goalSelector;
+    private final TargetSelectorUtils targetSelector;
 
     @SneakyThrows
     public VersionWrapper() {

@@ -15,5 +15,6 @@ public class SpawnerManager extends ModelManager<Spawner> {
     public SpawnerManager(Class<Spawner> classObject, String databaseType, JavaPlugin plugin) {
         super(classObject, databaseType, plugin);
         this.spawners = database.loadObjects();
+        this.spawners.forEach(Spawner::onCreation);
     }
 }

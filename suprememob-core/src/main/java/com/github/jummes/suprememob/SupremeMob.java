@@ -48,6 +48,8 @@ public class SupremeMob extends JavaPlugin {
 
         ConfigurationSerialization.registerClass(DropTable.class);
         ConfigurationSerialization.registerClass(Drop.class);
+
+        ConfigurationSerialization.registerClass(Spawner.class);
     }
 
     private SupremeMobAPI api;
@@ -70,13 +72,18 @@ public class SupremeMob extends JavaPlugin {
         setUpWrapper();
     }
 
+    @Override
+    public void onDisable() {
+        spawnerManager.getSpawners().forEach(Spawner::stopSpawnTask);
+    }
+
     private void setUpLocale() {
         Libs.getLocale().registerLocaleFiles(this, Lists.newArrayList("en-US"), "en-US");
     }
 
     private void setUpData() {
         this.mobManager = new MobManager(Mob.class, "comp", this);
-        this.spawnerManager = new SpawnerManager(Spawner.class, "comp", this);
+        this.spawnerManager = new SpawnerManager(Spawner.class, "yaml", this);
         this.cooldownManager = new CooldownManager();
         this.api = new SupremeMobAPI();
     }

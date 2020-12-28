@@ -115,13 +115,15 @@ gui:
         - "&7&oThe maximum distance from the target the entity"
         - "&7&owill reach."
   actuator:
+    entity-actions:
+      - "&7&oThe list of actions executed on the"
+      - "&7&oentity."
     spawn:
       description:
         - "&7&oSet an actuator that activates on the"
         - "&7&oentity spawn."
-      entity-actions:
-        - "&7&oThe list of entities executed on the"
-        - "&7&oentity on its spawn."
+    cooldown:
+      - "&7&oThe cooldown in ticks of the actuator."
     damage:
       description:
         - "&7&oSet an actuator that activates when"
@@ -130,6 +132,20 @@ gui:
       description:
         - "&7&oSet an actuator that activates when"
         - "&7&othe entity hits someone."
+    death:
+      description:
+        - "&7&oSet an actuator that activated when the"
+        - "&7&omob dies."
+      killer-actions:
+        - "&7&oThe list of actions executed on the"
+        - "&7&okiller of the mob."
+    interact:
+      description:
+        - "&7&oSet an actuator that actived when"
+        - "&7&othe mob is right clicked by a player."
+      interactor-actions:
+        - "&7&oThe list of actions executed on the"
+        - "&7&oentity that interacted with the mob."
   loot:
     default:
       - "&7&oWhether default mob drops should be included."
@@ -159,6 +175,20 @@ gui:
           - "&7&oThe item to drop."
         count:
           - "&7&oThe amount of items to drop."
+  spawner:
+    mob:
+      - "&7&oThe SupremeMob to spawn."
+    location:
+      - "&7&oThe location of the spawner."
+    range:
+      - "&7&oThe maximum spawn range."
+    cooldown:
+      - "&7&oThe cooldown between two entity spawns."
+    max-entities:
+      - "&7&oThe max number of entities coming from this"
+      - "&7&ospawner that can exist simultaneously."
+    level:
+      - "&7&oThe level of the SupremeMob."
   additional-tooltips:
     unknown:
       - "&c⚠ CAREFUL WHEN MODIFYING THIS ⚠"

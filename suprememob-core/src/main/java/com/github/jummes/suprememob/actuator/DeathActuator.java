@@ -16,9 +16,11 @@ import java.util.Map;
 @Enumerable.Displayable(name = "&6&lDeath &cactuator", description = "gui.actuator.death.description", headTexture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODYzZmQ3ODIyMmQ1OTg4YzZiZTFjYzlmYTk2ZTg1Mjg5MTViYjY5NzQ2NDY0ZDIzOGY5MzZlYmViYjIzYzUyIn19fQ==")
 public class DeathActuator extends Actuator {
 
-    @Serializable(headTexture = HeadUtils.ATTENTION_HEAD)
+    private static final String KILLER_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTBkZmM4YTM1NjNiZjk5NmY1YzFiNzRiMGIwMTViMmNjZWIyZDA0Zjk0YmJjZGFmYjIyOTlkOGE1OTc5ZmFjMSJ9fX0=";
+
+    @Serializable(headTexture = ENTITY_HEAD, description = "gui.actuator.entity-actions")
     private List<Action> onEntityActions;
-    @Serializable(headTexture = HeadUtils.ATTENTION_HEAD)
+    @Serializable(headTexture = KILLER_HEAD, description = "gui.actuator.death.killer-actions")
     private List<Action> onKillerActions;
 
     public DeathActuator() {
@@ -27,7 +29,7 @@ public class DeathActuator extends Actuator {
 
     public DeathActuator(Map<String, Object> map) {
         super(map);
-        this.onEntityActions = (List<Action>) map.get("onEntiyActions");
+        this.onEntityActions = (List<Action>) map.get("onEntityActions");
         this.onKillerActions = (List<Action>) map.get("onKillerActions");
     }
 

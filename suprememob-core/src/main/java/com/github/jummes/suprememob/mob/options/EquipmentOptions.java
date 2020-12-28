@@ -114,7 +114,7 @@ public class EquipmentOptions implements Model {
 
         @Override
         public ItemStack getGUIItem() {
-            return ItemUtils.getNamedItem(item.getMaterialItem(), "&6&lSlot: &c" + WordUtils.capitalizeFully(
+            return ItemUtils.getNamedItem(item.getWrapped().clone(), "&6&lSlot: &c" + WordUtils.capitalizeFully(
                     slot.name()), Libs.getLocale().getList("gui.additional-tooltips.delete"));
         }
 

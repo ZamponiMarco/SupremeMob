@@ -5,7 +5,6 @@ import com.github.jummes.supremeitem.action.source.EntitySource;
 import com.github.jummes.supremeitem.action.targeter.EntityTarget;
 import com.github.jummes.supremeitem.libs.annotation.Enumerable;
 import com.github.jummes.supremeitem.libs.annotation.Serializable;
-import com.github.jummes.suprememob.utils.HeadUtils;
 import com.google.common.collect.Lists;
 import org.bukkit.entity.LivingEntity;
 
@@ -13,11 +12,14 @@ import java.util.List;
 import java.util.Map;
 
 @Enumerable.Child
+@Enumerable.Displayable(name = "&6&lInteract &cactuator", description = "gui.actuator.interact.description", headTexture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjc0ZmRhYzYyZjMyZjZmMWI4MjgzYTc3MTAyNDljMmJmMjJiNGRmZmRkMTkyNzMxOGNmMDlkODUzNGEwZTMxZCJ9fX0=")
 public class InteractActuator extends CooldownActuator {
 
-    @Serializable(headTexture = HeadUtils.ATTENTION_HEAD)
+    private static final String INTERACTOR_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDI4NDNjM2MyMzU3MTZmM2ViNWNkOWMzYmRiZjIwODUzZjUwYTY1ZGMyMjMwNThiMWUxZWVmZmRlOTlmNjExMCJ9fX0=";
+
+    @Serializable(headTexture = ENTITY_HEAD, description = "gui.actuator.entity-actions")
     private List<Action> onEntityActions;
-    @Serializable(headTexture = HeadUtils.ATTENTION_HEAD)
+    @Serializable(headTexture = INTERACTOR_HEAD, description = "gui.actuator.interact.interactor-actions")
     private List<Action> onInteractorActions;
 
     public InteractActuator() {

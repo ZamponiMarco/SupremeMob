@@ -9,6 +9,10 @@ import java.util.stream.Collectors;
 
 public class SupremeMobAPI {
 
+    public List<Mob> getMobs() {
+        return SupremeMob.getInstance().getMobManager().getMobs();
+    }
+
     public List<String> getMobsNames() {
         return SupremeMob.getInstance().getMobManager().getMobs().stream().map(NamedModel::getName).
                 collect(Collectors.toList());
