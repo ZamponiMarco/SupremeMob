@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.github.jummes</groupId>
         <artifactId>suprememob</artifactId>
-        <version>0.1-dev4</version>
+        <version>0.1-dev5</version>
     </parent>
     <artifactId>suprememob-core</artifactId>
     <properties>
@@ -55,7 +55,7 @@
         <dependency>
             <groupId>com.github.jummes</groupId>
             <artifactId>supremeitem-dist</artifactId>
-            <version>0.1.16-dev2</version>
+            <version>0.1.17-dev2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

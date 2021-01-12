@@ -4,10 +4,10 @@ import com.github.jummes.supremeitem.condition.Condition;
 import com.github.jummes.suprememob.wrapper.GoalSelectorUtils;
 import com.github.jummes.suprememob.wrapper.v1_16_R3.goal.CustomPathfinderGoalAvoidTarget;
 import com.github.jummes.suprememob.wrapper.v1_16_R3.goal.CustomPathfinderGoalMeleeAttack;
+import com.github.jummes.suprememob.wrapper.v1_16_R3.goal.CustomPathfinderGoalRandomStrollLand;
 import lombok.SneakyThrows;
 import net.minecraft.server.v1_16_R3.EntityCreature;
 import net.minecraft.server.v1_16_R3.EntityInsentient;
-import net.minecraft.server.v1_16_R3.PathfinderGoalRandomStrollLand;
 import net.minecraft.server.v1_16_R3.PathfinderGoalWrapped;
 import org.apache.commons.lang.reflect.FieldUtils;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
@@ -37,9 +37,10 @@ public class GoalSelectorUtils_v1_16_R3 implements GoalSelectorUtils {
     }
 
     @Override
-    public void setRandomStrollLand(Mob mob, double speed, float probability) {
+    public void setRandomStrollLand(Mob mob, double speed, float probability, Condition canUse) {
         EntityCreature entity = (EntityCreature) ((CraftEntity) mob).getHandle();
-        entity.goalSelector.a(nextId(entity.goalSelector.d()), new PathfinderGoalRandomStrollLand(entity, speed, probability));
+        entity.goalSelector.a(nextId(entity.goalSelector.d()), new CustomPathfinderGoalRandomStrollLand(entity, speed,
+                probability, canUse));
     }
 
     @SneakyThrows

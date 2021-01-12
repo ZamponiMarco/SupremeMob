@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.github.jummes</groupId>
         <artifactId>suprememob</artifactId>
-        <version>0.1-dev4</version>
+        <version>0.1-dev5</version>
     </parent>
     <artifactId>suprememob-dist</artifactId>
     <url>http://maven.apache.org</url>

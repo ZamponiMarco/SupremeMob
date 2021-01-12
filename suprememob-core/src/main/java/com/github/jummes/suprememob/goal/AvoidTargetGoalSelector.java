@@ -2,7 +2,6 @@ package com.github.jummes.suprememob.goal;
 
 import com.github.jummes.supremeitem.action.source.Source;
 import com.github.jummes.supremeitem.action.targeter.Target;
-import com.github.jummes.supremeitem.condition.AlwaysTrueCondition;
 import com.github.jummes.supremeitem.condition.Condition;
 import com.github.jummes.supremeitem.libs.annotation.Enumerable;
 import com.github.jummes.supremeitem.libs.annotation.Serializable;
@@ -22,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Enumerable.Child
 @Enumerable.Displayable(name = "&6&lAvoid target &cgoal selector", description = "gui.goal-selector.avoid.description", headTexture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjI2ZDk1YTBhY2I0MjI0YWY0ODE4ZGI2NzBiMzZlNWYyMDE5MmE4OWVmYjk2ZmE1YzJiZjBjN2U0M2YyZDdmIn19fQ==")
-public class AvoidTargetGoalSelector extends GoalSelector {
+public class AvoidTargetGoalSelector extends ConditionalGoalSelector {
 
     private static final NumericValue DISTANCE_DEFAULT = new NumericValue(10);
     private static final NumericValue WALK_DEFAULT = new NumericValue(1);
@@ -40,12 +39,9 @@ public class AvoidTargetGoalSelector extends GoalSelector {
     private NumericValue walkSpeedModifier;
     @Serializable(headTexture = SPRINT_HEAD, description = "gui.goal-selector.avoid.sprint")
     private NumericValue sprintSpeedModifier;
-    @Serializable(headTexture = CONDITION_HEAD, description = "gui.goal-selector.condition")
-    private Condition condition;
 
     public AvoidTargetGoalSelector() {
-        this(EntityType.PLAYER, DISTANCE_DEFAULT.clone(), WALK_DEFAULT.clone(), SPRINT_DEFAULT.clone(),
-                new AlwaysTrueCondition());
+        this(CONDITION_DEFAULT.clone(), EntityType.PLAYER, DISTANCE_DEFAULT.clone(), WALK_DEFAULT.clone(), SPRINT_DEFAULT.clone());
     }
 
     public AvoidTargetGoalSelector(Map<String, Object> map) {
@@ -54,16 +50,15 @@ public class AvoidTargetGoalSelector extends GoalSelector {
         this.maxDistance = (NumericValue) map.getOrDefault("maxDistance", DISTANCE_DEFAULT.clone());
         this.walkSpeedModifier = (NumericValue) map.getOrDefault("walkSpeedModifier", WALK_DEFAULT.clone());
         this.sprintSpeedModifier = (NumericValue) map.getOrDefault("sprintSpeedModifier", SPRINT_DEFAULT.clone());
-        this.condition = (Condition) map.getOrDefault("condition", new AlwaysTrueCondition());
     }
 
-    public AvoidTargetGoalSelector(EntityType type, NumericValue maxDistance, NumericValue walkSpeedModifier,
-                                   NumericValue sprintSpeedModifier, Condition condition) {
+    public AvoidTargetGoalSelector(Condition condition, EntityType type, NumericValue maxDistance,
+                                   NumericValue walkSpeedModifier, NumericValue sprintSpeedModifier) {
+        super(condition);
         this.type = type;
         this.maxDistance = maxDistance;
         this.walkSpeedModifier = walkSpeedModifier;
         this.sprintSpeedModifier = sprintSpeedModifier;
-        this.condition = condition;
     }
 
     public static List<Object> getSpawnableEntities(ModelPath path) {

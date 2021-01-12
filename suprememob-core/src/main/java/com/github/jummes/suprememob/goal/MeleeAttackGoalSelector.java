@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Enumerable.Child
 @Enumerable.Displayable(name = "&6&lMelee attack &cgoal selector", description = "gui.goal-selector.melee.description", headTexture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTBkZmM4YTM1NjNiZjk5NmY1YzFiNzRiMGIwMTViMmNjZWIyZDA0Zjk0YmJjZGFmYjIyOTlkOGE1OTc5ZmFjMSJ9fX0=")
-public class MeleeAttackGoalSelector extends GoalSelector {
+public class MeleeAttackGoalSelector extends ConditionalGoalSelector {
 
     private static final boolean FOLLOWING_DEFAULT = false;
 
@@ -28,12 +28,9 @@ public class MeleeAttackGoalSelector extends GoalSelector {
     @Serializable(headTexture = HeadUtils.ATTENTION_HEAD, description = "gui.additional-tooltips.unknown")
     @Serializable.Optional(defaultValue = "FOLLOWING_DEFAULT")
     private boolean followingTargetEvenIfNotSeen;
-    @Serializable(headTexture = CONDITION_HEAD, description = "gui.goal-selector.condition",
-            additionalDescription = {"gui.additional-tooltips.recreate"})
-    private Condition condition;
 
     public MeleeAttackGoalSelector() {
-        this(SPEED_DEFAULT.clone(), FOLLOWING_DEFAULT, new AlwaysTrueCondition());
+        this(CONDITION_DEFAULT.clone(), SPEED_DEFAULT.clone(), FOLLOWING_DEFAULT);
     }
 
     public MeleeAttackGoalSelector(Map<String, Object> map) {
@@ -43,10 +40,10 @@ public class MeleeAttackGoalSelector extends GoalSelector {
         this.condition = (Condition) map.getOrDefault("condition", new AlwaysTrueCondition());
     }
 
-    public MeleeAttackGoalSelector(NumericValue speedModifier, boolean followingTargetEvenIfNotSeen, Condition condition) {
+    public MeleeAttackGoalSelector(Condition condition, NumericValue speedModifier, boolean followingTargetEvenIfNotSeen) {
+        super(condition);
         this.speedModifier = speedModifier;
         this.followingTargetEvenIfNotSeen = followingTargetEvenIfNotSeen;
-        this.condition = condition;
     }
 
     @Override

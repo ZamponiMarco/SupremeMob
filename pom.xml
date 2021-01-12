@@ -5,7 +5,7 @@
 
     <groupId>com.github.jummes</groupId>
     <artifactId>suprememob</artifactId>
-    <version>0.1-dev4</version>
+    <version>0.1-dev5</version>
     <packaging>pom</packaging>
     <name>SupremeMob</name>
     <properties>

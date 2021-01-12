@@ -11,7 +11,8 @@ public interface GoalSelectorUtils {
     void setAvoidTarget(Mob mob, EntityType type, float maxDist, double walkSpeedModifier,
                         double sprintSpeedModifier, Condition condition);
 
-    void setRandomStrollLand(Mob mob, double speed, float probability);
+    void setRandomStrollLand(Mob mob, double speed, float probability, Condition canUse);
 
     void clearEntityGoals(Mob mob);
+
 }
