@@ -39,9 +39,8 @@ public class InteractActuator extends CooldownActuator {
     }
 
     @Override
-    protected boolean executeExactSkill(LivingEntity... e) {
-        return onEntityActions.stream().anyMatch(action -> action.execute(new EntityTarget(e[0]), new EntitySource(e[0])).
-                equals(Action.ActionResult.CANCELLED)) || onInteractorActions.stream().anyMatch(action -> action.
-                execute(new EntityTarget(e[1]), new EntitySource(e[0])).equals(Action.ActionResult.CANCELLED));
+    protected void executeExactSkill(Map<String, Object> map, LivingEntity... e) {
+        onEntityActions.forEach(action -> action.execute(new EntityTarget(e[0]), new EntitySource(e[0]), map));
+        onInteractorActions.forEach(action -> action.execute(new EntityTarget(e[1]), new EntitySource(e[0]), map));
     }
 }

@@ -32,7 +32,7 @@ public class SpawnActuator extends Actuator {
         this.onEntityActions = onEntityActions;
     }
 
-    public void executeActuator(LivingEntity e) {
-        onEntityActions.forEach(action -> action.execute(new EntityTarget(e), new EntitySource(e)));
+    public void executeActuator(LivingEntity e, Map<String, Object> map) {
+        onEntityActions.forEach(action -> action.execute(new EntityTarget(e), new EntitySource(e), map));
     }
 }

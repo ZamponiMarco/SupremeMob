@@ -5,7 +5,6 @@ import com.github.jummes.supremeitem.action.source.EntitySource;
 import com.github.jummes.supremeitem.action.targeter.EntityTarget;
 import com.github.jummes.supremeitem.libs.annotation.Enumerable;
 import com.github.jummes.supremeitem.libs.annotation.Serializable;
-import com.github.jummes.suprememob.utils.HeadUtils;
 import com.google.common.collect.Lists;
 import org.bukkit.entity.LivingEntity;
 
@@ -38,18 +37,12 @@ public class DeathActuator extends Actuator {
         this.onKillerActions = onKillerActions;
     }
 
-    public ActuatorResult executeSkill(LivingEntity mob, LivingEntity killer) {
-        boolean cancelled = false;
-
-        cancelled = onEntityActions.stream().anyMatch(action -> action.execute(new EntityTarget(mob),
-                new EntitySource(mob)).equals(Action.ActionResult.CANCELLED));
+    public void executeSkill(Map<String, Object> map, LivingEntity mob, LivingEntity killer) {
+        onEntityActions.forEach(action -> action.execute(new EntityTarget(mob), new EntitySource(mob), map));
 
         if (killer != null) {
-            cancelled |= onKillerActions.stream().anyMatch(action -> action.execute(new EntityTarget(killer),
-                    new EntitySource(mob)).equals(Action.ActionResult.CANCELLED));
+            onKillerActions.forEach(action -> action.execute(new EntityTarget(killer), new EntitySource(mob), map));
         }
-
-        return cancelled ? ActuatorResult.CANCELLED : ActuatorResult.SUCCESS;
     }
 
 }

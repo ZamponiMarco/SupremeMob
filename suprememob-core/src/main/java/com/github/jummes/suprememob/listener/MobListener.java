@@ -19,7 +19,9 @@ import org.bukkit.loot.LootContext;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -27,7 +29,6 @@ public class MobListener implements Listener {
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
-        AtomicBoolean cancelled = new AtomicBoolean(false);
         Mob damaged = Mob.fromEntity(e.getEntity());
         LivingEntity damagerEntity = null;
         if (e.getDamager() instanceof LivingEntity && e.getEntity() instanceof LivingEntity) {
@@ -37,21 +38,23 @@ public class MobListener implements Listener {
             damagerEntity = (LivingEntity) projectile.getShooter();
         }
 
+        Map<String, Object> map = new HashMap<>();
+
         if (damaged != null) {
             damaged.getActuators().stream().filter(actuator -> actuator instanceof DamageActuator).findFirst().
-                    ifPresent(actuator -> cancelled.set(((DamageActuator) actuator).getActuatorResult((LivingEntity) e.getEntity(),
-                            (LivingEntity) e.getEntity(), (LivingEntity) e.getDamager()).equals(Actuator.ActuatorResult.CANCELLED)));
+                    ifPresent(actuator -> ((DamageActuator) actuator).getActuatorResult(map, (LivingEntity) e.getEntity(),
+                            (LivingEntity) e.getEntity(), (LivingEntity) e.getDamager()));
         }
 
         Mob damager = Mob.fromEntity(damagerEntity);
         if (damager != null) {
             damager.getActuators().stream().filter(actuator -> actuator instanceof HitActuator).findFirst().
-                    ifPresent(actuator -> cancelled.set(cancelled.get() || ((HitActuator) actuator).
-                            getActuatorResult((LivingEntity) e.getDamager(), (LivingEntity) e.getDamager(), (LivingEntity) e.getEntity()).
-                            equals(Actuator.ActuatorResult.CANCELLED)));
+                    ifPresent(actuator -> ((HitActuator) actuator).
+                            getActuatorResult(map, (LivingEntity) e.getDamager(), (LivingEntity) e.getDamager(),
+                                    (LivingEntity) e.getEntity()));
         }
 
-        if (cancelled.get()) {
+        if ((boolean) map.getOrDefault("cancelled", false)) {
             e.setCancelled(true);
         }
 
@@ -66,7 +69,8 @@ public class MobListener implements Listener {
         }
 
         mob.getActuators().stream().filter(actuator -> actuator instanceof DeathActuator).findFirst().
-                ifPresent(actuator -> ((DeathActuator) actuator).executeSkill(e.getEntity(), e.getEntity().getKiller()));
+                ifPresent(actuator -> ((DeathActuator) actuator).executeSkill(new HashMap<>(), e.getEntity(),
+                        e.getEntity().getKiller()));
 
         modifyDrops(e, mob);
     }
@@ -82,7 +86,7 @@ public class MobListener implements Listener {
         LivingEntity entity = (LivingEntity) e.getRightClicked();
 
         mob.getActuators().stream().filter(actuator -> actuator instanceof InteractActuator).findFirst().ifPresent(actuator ->
-                ((InteractActuator) actuator).getActuatorResult(entity, entity, e.getPlayer()));
+                ((InteractActuator) actuator).getActuatorResult(new HashMap<>(), entity, entity, e.getPlayer()));
     }
 
     private void modifyDrops(EntityDeathEvent e, Mob mob) {

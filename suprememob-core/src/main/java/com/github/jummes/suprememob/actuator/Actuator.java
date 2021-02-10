@@ -31,10 +31,4 @@ public abstract class Actuator implements Model {
         return ItemUtils.getNamedItem(Libs.getWrapper().skullFromValue(getClass().getAnnotation(Enumerable.Displayable.class).headTexture()),
                 getClass().getAnnotation(Enumerable.Displayable.class).name(), Lists.newArrayList());
     }
-
-    public enum ActuatorResult {
-        SUCCESS,
-        FAILURE,
-        CANCELLED
-    }
 }

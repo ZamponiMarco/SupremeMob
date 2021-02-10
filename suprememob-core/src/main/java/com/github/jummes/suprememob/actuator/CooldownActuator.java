@@ -37,15 +37,13 @@ public abstract class CooldownActuator extends Actuator {
         }
     }
 
-    public ActuatorResult getActuatorResult(LivingEntity mob, LivingEntity... e) {
-        boolean cancelled = false;
+    public void getActuatorResult(Map<String, Object> map, LivingEntity mob, LivingEntity... e) {
         int currentCooldown = SupremeMob.getInstance().getCooldownManager().getCooldown(mob, getClass());
         if (currentCooldown == 0) {
-            cancelled = executeExactSkill(e);
+            executeExactSkill(map, e);
             cooldown(mob, cooldown);
         }
-        return cancelled ? ActuatorResult.CANCELLED : ActuatorResult.SUCCESS;
     }
 
-    protected abstract boolean executeExactSkill(LivingEntity... e);
+    protected abstract void executeExactSkill(Map<String, Object> map, LivingEntity... e);
 }

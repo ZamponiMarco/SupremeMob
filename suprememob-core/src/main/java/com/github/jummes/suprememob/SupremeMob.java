@@ -90,6 +90,7 @@ public class SupremeMob extends JavaPlugin {
 
     private void setUpListener() {
         getServer().getPluginManager().registerEvents(new MobListener(), this);
+        getServer().getPluginManager().registerEvents(spawnerManager, this);
     }
 
     private void setUpCommands() {

@@ -39,12 +39,11 @@ public class DamageActuator extends CooldownActuator {
     }
 
     @Override
-    protected boolean executeExactSkill(LivingEntity... e) {
-        return onDamagedActions.stream().anyMatch(action ->
-                action.execute(new EntityTarget(e[0]), new EntitySource(e[0])).
-                        equals(Action.ActionResult.CANCELLED)) ||
-                onDamagerActions.stream().anyMatch(action ->
-                        action.execute(new EntityTarget(e[1]), new EntitySource(e[0])).
-                                equals(Action.ActionResult.CANCELLED));
+    protected void executeExactSkill(Map<String, Object> map, LivingEntity... e) {
+        onDamagedActions.forEach(action ->
+                action.execute(new EntityTarget(e[0]), new EntitySource(e[0]), map));
+
+        onDamagerActions.forEach(action ->
+                action.execute(new EntityTarget(e[1]), new EntitySource(e[0]), map));
     }
 }

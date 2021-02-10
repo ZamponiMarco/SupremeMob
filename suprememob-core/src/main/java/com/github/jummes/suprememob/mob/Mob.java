@@ -68,6 +68,11 @@ public class Mob extends NamedModel {
         counter++;
     }
 
+    @Override
+    protected boolean isAlreadyPresent(String s) {
+        return SupremeMob.getInstance().getMobManager().getByName(s) != null;
+    }
+
     private static String nextAvailableName() {
         String name;
         do {
@@ -142,7 +147,7 @@ public class Mob extends NamedModel {
                 PersistentDataType.INTEGER, level);
         generalOptions.buildOptions(e, source, target);
         actuators.stream().filter(actuator -> actuator instanceof SpawnActuator).findFirst().ifPresent(actuator ->
-                ((SpawnActuator) actuator).executeActuator(e));
+                ((SpawnActuator) actuator).executeActuator(e, new HashMap<>()));
         return e;
     }
 

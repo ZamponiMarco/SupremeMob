@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Map;
 
-@Enumerable.Parent(classArray = {ClearGoalSelector.class, MeleeAttackGoalSelector.class,
+@Enumerable.Parent(classArray = {ConditionalGoalSelector.class, ClearGoalSelector.class, MeleeAttackGoalSelector.class,
         RandomStrollLandGoalSelector.class, AvoidTargetGoalSelector.class})
 public abstract class GoalSelector implements Model {
 

@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Enumerable.Child
 @Enumerable.Displayable(name = "&6&lHit &cactuator", description = "gui.actuator.hit.description", headTexture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTBkZmM4YTM1NjNiZjk5NmY1YzFiNzRiMGIwMTViMmNjZWIyZDA0Zjk0YmJjZGFmYjIyOTlkOGE1OTc5ZmFjMSJ9fX0=")
-public class HitActuator extends CooldownActuator{
+public class HitActuator extends CooldownActuator {
 
     @Serializable(headTexture = DAMAGER_HEAD, description = "gui.skill.hit-entity.damager-actions")
     @Serializable.Optional(defaultValue = "ACTIONS_DEFAULT")
@@ -39,12 +39,9 @@ public class HitActuator extends CooldownActuator{
     }
 
     @Override
-    protected boolean executeExactSkill(LivingEntity... e) {
-        return onDamagedActions.stream().anyMatch(action ->
-                action.execute(new EntityTarget(e[1]), new EntitySource(e[0])).
-                        equals(Action.ActionResult.CANCELLED)) ||
-                onDamagerActions.stream().anyMatch(action ->
-                        action.execute(new EntityTarget(e[0]), new EntitySource(e[0])).
-                                equals(Action.ActionResult.CANCELLED));
+    protected void executeExactSkill(Map<String, Object> map, LivingEntity... e) {
+        onDamagedActions.forEach(action -> action.execute(new EntityTarget(e[1]), new EntitySource(e[0]), map));
+
+        onDamagerActions.forEach(action -> action.execute(new EntityTarget(e[0]), new EntitySource(e[0]), map));
     }
 }
