@@ -2,6 +2,7 @@ package com.github.jummes.suprememob.actuator;
 
 import com.github.jummes.supremeitem.action.Action;
 import com.github.jummes.supremeitem.action.source.EntitySource;
+import com.github.jummes.supremeitem.action.source.Source;
 import com.github.jummes.supremeitem.action.targeter.EntityTarget;
 import com.github.jummes.supremeitem.libs.annotation.Enumerable;
 import com.github.jummes.supremeitem.libs.annotation.Serializable;
@@ -32,7 +33,7 @@ public class SpawnActuator extends Actuator {
         this.onEntityActions = onEntityActions;
     }
 
-    public void executeActuator(LivingEntity e, Map<String, Object> map) {
-        onEntityActions.forEach(action -> action.execute(new EntityTarget(e), new EntitySource(e), map));
+    public void executeActuator(Source source, LivingEntity e, Map<String, Object> map) {
+        onEntityActions.forEach(action -> action.execute(new EntityTarget(e), source, map));
     }
 }

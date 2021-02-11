@@ -146,8 +146,9 @@ public class Mob extends NamedModel {
         e.getPersistentDataContainer().set(new NamespacedKey(SupremeMob.getInstance(), "level"),
                 PersistentDataType.INTEGER, level);
         generalOptions.buildOptions(e, source, target);
+        Source finalSource = source;
         actuators.stream().filter(actuator -> actuator instanceof SpawnActuator).findFirst().ifPresent(actuator ->
-                ((SpawnActuator) actuator).executeActuator(e, new HashMap<>()));
+                ((SpawnActuator) actuator).executeActuator(finalSource, e, new HashMap<>()));
         return e;
     }
 

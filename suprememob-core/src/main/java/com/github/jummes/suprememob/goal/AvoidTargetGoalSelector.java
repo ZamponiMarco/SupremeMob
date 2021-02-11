@@ -41,7 +41,8 @@ public class AvoidTargetGoalSelector extends ConditionalGoalSelector {
     private NumericValue sprintSpeedModifier;
 
     public AvoidTargetGoalSelector() {
-        this(CONDITION_DEFAULT.clone(), EntityType.PLAYER, DISTANCE_DEFAULT.clone(), WALK_DEFAULT.clone(), SPRINT_DEFAULT.clone());
+        this(CONDITION_DEFAULT.clone(), EntityType.PLAYER, DISTANCE_DEFAULT.clone(), WALK_DEFAULT.clone(),
+                SPRINT_DEFAULT.clone());
     }
 
     public AvoidTargetGoalSelector(Map<String, Object> map) {

@@ -3,6 +3,7 @@ package com.github.jummes.suprememob.wrapper.v1_16_R3;
 import com.github.jummes.supremeitem.condition.Condition;
 import com.github.jummes.suprememob.wrapper.GoalSelectorUtils;
 import com.github.jummes.suprememob.wrapper.v1_16_R3.goal.CustomPathfinderGoalAvoidTarget;
+import com.github.jummes.suprememob.wrapper.v1_16_R3.goal.CustomPathfinderGoalFollowTarget;
 import com.github.jummes.suprememob.wrapper.v1_16_R3.goal.CustomPathfinderGoalMeleeAttack;
 import com.github.jummes.suprememob.wrapper.v1_16_R3.goal.CustomPathfinderGoalRandomStrollLand;
 import lombok.SneakyThrows;
@@ -41,6 +42,13 @@ public class GoalSelectorUtils_v1_16_R3 implements GoalSelectorUtils {
         EntityCreature entity = (EntityCreature) ((CraftEntity) mob).getHandle();
         entity.goalSelector.a(nextId(entity.goalSelector.d()), new CustomPathfinderGoalRandomStrollLand(entity, speed,
                 probability, canUse));
+    }
+
+    @Override
+    public void setFollowTarget(Mob mob, double speedModifier, float stopDistance, float areaSize, Condition condition) {
+        EntityCreature entity = (EntityCreature) ((CraftEntity) mob).getHandle();
+        entity.goalSelector.a(nextId(entity.goalSelector.d()), new CustomPathfinderGoalFollowTarget(entity, speedModifier,
+                stopDistance, areaSize, condition));
     }
 
     @SneakyThrows

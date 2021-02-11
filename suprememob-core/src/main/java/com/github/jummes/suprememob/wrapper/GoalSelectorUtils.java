@@ -13,6 +13,8 @@ public interface GoalSelectorUtils {
 
     void setRandomStrollLand(Mob mob, double speed, float probability, Condition canUse);
 
+    void setFollowTarget(Mob mob, double speedModifier, float stopDistance, float areaSize, Condition condition);
+
     void clearEntityGoals(Mob mob);
 
 }
