@@ -5,7 +5,7 @@ import com.github.jummes.supremeitem.action.targeter.Target;
 import com.github.jummes.supremeitem.libs.annotation.Serializable;
 import com.github.jummes.supremeitem.libs.model.Model;
 import com.github.jummes.suprememob.goal.GoalSelector;
-import com.github.jummes.suprememob.target.TargetSelector;
+import com.github.jummes.suprememob.targetted.TargetSelector;
 import com.google.common.collect.Lists;
 import org.bukkit.entity.Mob;
 

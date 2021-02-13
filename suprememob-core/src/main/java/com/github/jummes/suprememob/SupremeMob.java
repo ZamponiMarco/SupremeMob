@@ -21,7 +21,9 @@ import com.github.jummes.suprememob.mob.options.BehaviorOptions;
 import com.github.jummes.suprememob.mob.options.EquipmentOptions;
 import com.github.jummes.suprememob.mob.options.GeneralOptions;
 import com.github.jummes.suprememob.spawner.Spawner;
-import com.github.jummes.suprememob.target.TargetSelector;
+import com.github.jummes.suprememob.targetted.ClearTargetSelector;
+import com.github.jummes.suprememob.targetted.NearestAttackableTargetSelector;
+import com.github.jummes.suprememob.targetted.TargetSelector;
 import com.github.jummes.suprememob.wrapper.VersionWrapper;
 import com.google.common.collect.Lists;
 import lombok.Getter;
@@ -42,7 +44,12 @@ public class SupremeMob extends JavaPlugin {
 
         ConfigurationSerialization.registerClass(Actuator.class);
 
-        ConfigurationSerialization.registerClass(TargetSelector.class);
+        ConfigurationSerialization.registerClass(TargetSelector.class,
+                "com.github.jummes.suprememob.target.TargetSelector");
+        ConfigurationSerialization.registerClass(ClearTargetSelector.class,
+                "com.github.jummes.suprememob.target.ClearTargetSelector");
+        ConfigurationSerialization.registerClass(NearestAttackableTargetSelector.class,
+                "com.github.jummes.suprememob.target.NearestAttackableTargetSelector");
 
         ConfigurationSerialization.registerClass(GoalSelector.class);
 
