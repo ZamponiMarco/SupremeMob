@@ -36,11 +36,5 @@
             <artifactId>suprememob-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.jummes</groupId>
-            <artifactId>supremeitem-dist</artifactId>
-            <version>0.1.17-dev2</version>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 </project>
