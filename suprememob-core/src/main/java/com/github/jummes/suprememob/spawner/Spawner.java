@@ -29,6 +29,7 @@ import org.bukkit.persistence.PersistentDataType;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -95,13 +96,13 @@ public class Spawner implements Model, Listener {
 
 
     public static List<Object> getMobs(ModelPath path) {
-        return new ArrayList<>(SupremeItem.getInstance().getSupremeMobHook().getMobsList());
+        return SupremeMob.getInstance().getMobManager().getMobs().stream().map(Mob::getName).collect(Collectors.toList());
     }
 
     public static Function<Object, ItemStack> mobsMapper() {
         return obj -> {
             String mobStr = (String) obj;
-            Mob mob = SupremeItem.getInstance().getSupremeMobHook().getByName(mobStr);
+            Mob mob = SupremeMob.getInstance().getMobManager().getByName(mobStr);
             if (mob != null) {
                 return ItemUtils.getNamedItem(mob.getGUIItem(), mob.getGUIItem().getItemMeta().getDisplayName(),
                         Lists.newArrayList());

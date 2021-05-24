@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.jummes</groupId>
         <artifactId>suprememob</artifactId>
-        <version>0.1</version>
+        <version>0.1.1</version>
     </parent>
     <artifactId>suprememob-craftbukkit_1_16_R3</artifactId>
     <properties>
@@ -15,6 +15,7 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
@@ -39,7 +40,7 @@
         <dependency>
             <groupId>com.github.jummes</groupId>
             <artifactId>supremeitem-dist</artifactId>
-            <version>0.1.19</version>
+            <version>0.2</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

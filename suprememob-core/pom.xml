@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.github.jummes</groupId>
         <artifactId>suprememob</artifactId>
-        <version>0.1</version>
+        <version>0.1.1</version>
     </parent>
     <artifactId>suprememob-core</artifactId>
     <properties>
@@ -16,6 +16,7 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
@@ -33,10 +34,6 @@
     </build>
     <repositories>
         <repository>
-            <id>sk89q-repo</id>
-            <url>https://maven.enginehub.org/repo/</url>
-        </repository>
-        <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
@@ -51,7 +48,7 @@
         <dependency>
             <groupId>com.github.jummes</groupId>
             <artifactId>supremeitem-dist</artifactId>
-            <version>0.1.19</version>
+            <version>0.2</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

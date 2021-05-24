@@ -1,14 +1,19 @@
 package com.github.jummes.suprememob;
 
+import com.github.jummes.supremeitem.entity.Entity;
 import com.github.jummes.supremeitem.libs.command.PluginCommandExecutor;
 import com.github.jummes.supremeitem.libs.core.Libs;
+import com.github.jummes.supremeitem.placeholder.numeric.NumericPlaceholder;
+import com.github.jummes.supremeitem.util.InjectUtils;
 import com.github.jummes.suprememob.actuator.Actuator;
-import com.github.jummes.suprememob.api.SupremeMobAPI;
 import com.github.jummes.suprememob.command.HelpCommand;
 import com.github.jummes.suprememob.command.MobListCommand;
 import com.github.jummes.suprememob.command.MobSpawnCommand;
 import com.github.jummes.suprememob.command.SpawnerListCommand;
 import com.github.jummes.suprememob.goal.GoalSelector;
+import com.github.jummes.suprememob.inject.entity.SupremeMobEntity;
+import com.github.jummes.suprememob.inject.placeholder.numeric.MobLevelPlaceholder;
+import com.github.jummes.suprememob.inject.placeholder.numeric.MobNumericPlaceholder;
 import com.github.jummes.suprememob.listener.MobListener;
 import com.github.jummes.suprememob.loot.DropTable;
 import com.github.jummes.suprememob.loot.drop.Drop;
@@ -34,6 +39,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class SupremeMob extends JavaPlugin {
 
     static {
+        InjectUtils.injectChild(Entity.class, SupremeMobEntity.class);
+        ConfigurationSerialization.registerClass(SupremeMobEntity.class,
+                "com.github.jummes.supremeitem.entity.SupremeMobEntity");
+
+        InjectUtils.injectChild(NumericPlaceholder.class, MobNumericPlaceholder.class);
+        ConfigurationSerialization.registerClass(MobNumericPlaceholder.class,
+                "com.github.jummes.supremeitem.placeholder.numeric.mob.MobNumericPlaceholder");
+        ConfigurationSerialization.registerClass(MobLevelPlaceholder.class,
+                "com.github.jummes.supremeitem.placeholder.numeric.mob.MobLevelPlaceholder");
+
         ConfigurationSerialization.registerClass(Mob.class);
 
         ConfigurationSerialization.registerClass(GeneralOptions.class);
@@ -58,8 +73,6 @@ public class SupremeMob extends JavaPlugin {
 
         ConfigurationSerialization.registerClass(Spawner.class);
     }
-
-    private SupremeMobAPI api;
 
     private MobManager mobManager;
     private SpawnerManager spawnerManager;
@@ -92,7 +105,6 @@ public class SupremeMob extends JavaPlugin {
         this.mobManager = new MobManager(Mob.class, "comp", this);
         this.spawnerManager = new SpawnerManager(Spawner.class, "yaml", this);
         this.cooldownManager = new CooldownManager();
-        this.api = new SupremeMobAPI();
     }
 
     private void setUpListener() {
