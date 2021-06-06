@@ -3,8 +3,8 @@ package com.github.jummes.suprememob;
 import com.github.jummes.supremeitem.entity.Entity;
 import com.github.jummes.supremeitem.libs.command.PluginCommandExecutor;
 import com.github.jummes.supremeitem.libs.core.Libs;
+import com.github.jummes.supremeitem.libs.util.InjectUtils;
 import com.github.jummes.supremeitem.placeholder.numeric.NumericPlaceholder;
-import com.github.jummes.supremeitem.util.InjectUtils;
 import com.github.jummes.suprememob.actuator.Actuator;
 import com.github.jummes.suprememob.command.HelpCommand;
 import com.github.jummes.suprememob.command.MobListCommand;
@@ -39,11 +39,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class SupremeMob extends JavaPlugin {
 
     static {
-        InjectUtils.injectChild(Entity.class, SupremeMobEntity.class);
+        InjectUtils.injectClass(Entity.class, SupremeMobEntity.class);
         ConfigurationSerialization.registerClass(SupremeMobEntity.class,
                 "com.github.jummes.supremeitem.entity.SupremeMobEntity");
 
-        InjectUtils.injectChild(NumericPlaceholder.class, MobNumericPlaceholder.class);
+        InjectUtils.injectClass(NumericPlaceholder.class, MobNumericPlaceholder.class);
         ConfigurationSerialization.registerClass(MobNumericPlaceholder.class,
                 "com.github.jummes.supremeitem.placeholder.numeric.mob.MobNumericPlaceholder");
         ConfigurationSerialization.registerClass(MobLevelPlaceholder.class,
