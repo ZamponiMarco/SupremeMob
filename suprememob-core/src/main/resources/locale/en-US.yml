@@ -189,6 +189,22 @@ gui:
       - "&7&ospawner that can exist simultaneously."
     level:
       - "&7&oThe level of the SupremeMob."
+  placeholder:
+    double:
+      mob:
+        description:
+          - "&7&oSet a SupremeMob related placeholder."
+        level:
+          description:
+            - "&7&oSet a mob level placeholder."
+  entity:
+    supreme:
+      description:
+        - "&7&oSet a SupremeMob entity."
+      mob:
+        - "&7&oThe SupremeMob to spawn."
+      level:
+        - "&7&oThe level of the mob."
   additional-tooltips:
     unknown:
       - "&c⚠ CAREFUL WHEN MODIFYING THIS ⚠"
