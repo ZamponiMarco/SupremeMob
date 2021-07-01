@@ -1,14 +1,18 @@
-package com.github.jummes.suprememob.wrapper.v1_16_R3.goal;
+package com.github.jummes.suprememob.wrapper.v1_17_R1.goal;
 
 import com.github.jummes.supremeitem.action.source.EntitySource;
 import com.github.jummes.supremeitem.action.targeter.EntityTarget;
 import com.github.jummes.supremeitem.condition.Condition;
 import lombok.SneakyThrows;
-import net.minecraft.server.v1_16_R3.*;
+import net.minecraft.world.entity.EntityInsentient;
+import net.minecraft.world.entity.EntityLiving;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalFollowEntity;
+import net.minecraft.world.entity.ai.navigation.NavigationAbstract;
+import net.minecraft.world.level.pathfinder.PathType;
 import org.apache.commons.lang.reflect.FieldUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.entity.LivingEntity;
 
 import java.lang.reflect.Field;
@@ -32,7 +36,7 @@ public class CustomPathfinderGoalFollowTarget extends PathfinderGoalFollowEntity
     }
 
     public boolean a() {
-        List<EntityLiving> var0 = this.getA().world.a(EntityLiving.class, this.getA().getBoundingBox().g(
+        List<EntityLiving> var0 = this.getA().getWorld().a(EntityLiving.class, this.getA().getBoundingBox().g(
                 this.getI()), pr);
         if (!var0.isEmpty()) {
             for (EntityLiving a : var0) {
@@ -47,24 +51,25 @@ public class CustomPathfinderGoalFollowTarget extends PathfinderGoalFollowEntity
     }
 
     public boolean b() {
-        return this.toFollow != null && !this.getE().m() && this.getA().h(this.toFollow) > (double)(this.getG() * this.getG());
+        return this.toFollow != null && !this.getE().m() && this.getA().i(this.toFollow) >
+                (double)(this.getG() * this.getG());
     }
 
     public void c() {
         setF(0);
-        setH(this.getA().a(PathType.WATER));
-        this.getA().a(PathType.WATER, 0.0F);
+        setH(this.getA().a(PathType.i));
+        this.getA().a(PathType.i, 0.0F);
     }
 
     public void d() {
         this.toFollow = null;
         this.getE().o();
-        this.getA().a(PathType.WATER, this.getH());
+        this.getA().a(PathType.i, this.getH());
     }
 
     public void e() {
         if (this.toFollow != null && !this.getA().isLeashed()) {
-            this.getA().getControllerLook().a(this.toFollow, 10.0F, (float)this.getA().O());
+            this.getA().getControllerLook().a(this.toFollow, 10.0F, this.getA().getHeadRotation());
             setF(this.getF() - 1);
             if (this.getF() <= 0) {
                 setF(10);

@@ -1,9 +1,11 @@
 package com.github.jummes.suprememob.targetted;
 
-import com.github.jummes.supremeitem.action.source.EntitySource;
 import com.github.jummes.supremeitem.action.source.Source;
+import com.github.jummes.supremeitem.action.targeter.EntityTarget;
 import com.github.jummes.supremeitem.action.targeter.Target;
-import com.github.jummes.supremeitem.entity.selector.EntitySelector;
+import com.github.jummes.supremeitem.condition.AlwaysTrueCondition;
+import com.github.jummes.supremeitem.condition.Condition;
+import com.github.jummes.supremeitem.condition.bool.AndCondition;
 import com.github.jummes.supremeitem.libs.annotation.Enumerable;
 import com.github.jummes.supremeitem.libs.annotation.Serializable;
 import com.github.jummes.supremeitem.libs.model.ModelPath;
@@ -31,7 +33,6 @@ import java.util.stream.Collectors;
         headTexture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTZmYzg1NGJiODRjZjRiNzY5NzI5Nzk3M2UwMmI3OWJjMTA2OTg0NjBiNTFhNjM5YzYwZTVlNDE3NzM0ZTExIn19fQ==")
 public class NearestAttackableTargetSelector extends TargetSelector {
 
-    private static final List<EntitySelector> SELECTORS_DEFAULT = Lists.newArrayList();
     private static final NumericValue INTERVAL_DEFAULT = new NumericValue(10);
     private static final boolean SEE_DEFAULT = true;
     private static final boolean REACH_DEFAULT = false;
@@ -43,7 +44,7 @@ public class NearestAttackableTargetSelector extends TargetSelector {
     private EntityType type;
     @Serializable(headTexture = SELECTOR_HEAD, description = "gui.target-selector.nearest.selectors")
     @Serializable.Optional(defaultValue = "SELECTORS_DEFAULT")
-    private List<EntitySelector> selectors;
+    private Condition condition;
     @Serializable(headTexture = HeadUtils.ATTENTION_HEAD, description = "gui.additional-tooltips.unknown")
     @Serializable.Optional(defaultValue = "INTERVAL_DEFAULT")
     private NumericValue randomInterval;
@@ -55,21 +56,26 @@ public class NearestAttackableTargetSelector extends TargetSelector {
     private boolean mustReach;
 
     public NearestAttackableTargetSelector() {
-        this(EntityType.PLAYER, Lists.newArrayList(), INTERVAL_DEFAULT.clone(), SEE_DEFAULT, REACH_DEFAULT);
+        this(EntityType.PLAYER, new AlwaysTrueCondition(), INTERVAL_DEFAULT.clone(), SEE_DEFAULT, REACH_DEFAULT);
     }
 
     public NearestAttackableTargetSelector(Map<String, Object> map) {
         super(map);
         this.type = EntityType.valueOf((String) map.getOrDefault("type", "PLAYER"));
-        this.selectors = (List<EntitySelector>) map.getOrDefault("selectors", Lists.newArrayList());
+        List<Condition> conditions = (List<Condition>) map.get("selectors");
+        if (conditions == null) {
+            this.condition = (Condition) map.getOrDefault("condition", new AlwaysTrueCondition());
+        } else {
+            this.condition = new AndCondition(false, conditions);
+        }
         this.randomInterval = (NumericValue) map.getOrDefault("randomInterval", INTERVAL_DEFAULT.clone());
         this.mustSee = (boolean) map.getOrDefault("mustSee", SEE_DEFAULT);
         this.mustReach = (boolean) map.getOrDefault("mustReach", REACH_DEFAULT);
     }
 
-    public NearestAttackableTargetSelector(EntityType type, List<EntitySelector> selectors, NumericValue randomInterval, boolean mustSee, boolean mustReach) {
+    public NearestAttackableTargetSelector(EntityType type, Condition condition, NumericValue randomInterval, boolean mustSee, boolean mustReach) {
         this.type = type;
-        this.selectors = selectors;
+        this.condition = condition;
         this.randomInterval = randomInterval;
         this.mustSee = mustSee;
         this.mustReach = mustReach;
@@ -89,8 +95,7 @@ public class NearestAttackableTargetSelector extends TargetSelector {
 
     @Override
     public void applyToEntity(Mob mob, Source source, Target target) {
-        Predicate<LivingEntity> select = selectors.stream().map(selector -> selector.getFilter(new EntitySource(mob),
-                target)).reduce(e -> true, Predicate::and);
+        Predicate<LivingEntity> select = e -> condition.checkCondition(new EntityTarget(e), source);
         SupremeMob.getInstance().getWrapper().getTargetSelector().setNearestEntityTarget(mob, type, select,
                 randomInterval.getRealValue(target, source).intValue(), mustSee, mustReach);
     }
