@@ -9,6 +9,7 @@ import com.github.jummes.supremeitem.libs.annotation.Serializable;
 import com.github.jummes.suprememob.loot.drop.Drop;
 import com.github.jummes.suprememob.utils.HeadUtils;
 import com.google.common.collect.Lists;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.Inventory;
@@ -56,8 +57,8 @@ public class SimpleDropTable extends DropTable {
             return Lists.newArrayList();
         }
 
-        Source source = context.getKiller() != null ? new EntitySource(context.getKiller()) :
-                new EntitySource((LivingEntity) context.getLootedEntity());
+        Source source = context.getKiller() != null ? new EntitySource(context.getKiller(), new ItemStack(Material.CARROT)) :
+                new EntitySource((LivingEntity) context.getLootedEntity(), new ItemStack(Material.CARROT));
         Target target = new EntityTarget((LivingEntity) context.getLootedEntity());
 
         return drops.stream().reduce(Lists.newArrayList(), (list, drop) -> {

@@ -6,9 +6,11 @@ import com.github.jummes.supremeitem.condition.Condition;
 import net.minecraft.server.v1_16_R3.EntityCreature;
 import net.minecraft.server.v1_16_R3.PathfinderGoalRandomStrollLand;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.inventory.ItemStack;
 
 public class CustomPathfinderGoalRandomStrollLand extends PathfinderGoalRandomStrollLand {
 
@@ -26,6 +28,6 @@ public class CustomPathfinderGoalRandomStrollLand extends PathfinderGoalRandomSt
     public boolean a() {
         return super.a() && condition.checkCondition(
                 new EntityTarget((LivingEntity) CraftEntity.getEntity((CraftServer) Bukkit.getServer(), this.a.getGoalTarget())),
-                new EntitySource((LivingEntity) CraftEntity.getEntity((CraftServer) Bukkit.getServer(), this.a)));
+                new EntitySource((LivingEntity) CraftEntity.getEntity((CraftServer) Bukkit.getServer(), this.a), new ItemStack(Material.CARROT)));
     }
 }

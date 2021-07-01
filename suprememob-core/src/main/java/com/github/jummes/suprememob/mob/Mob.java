@@ -19,6 +19,7 @@ import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -138,7 +139,7 @@ public class Mob extends NamedModel {
     public Entity spawn(Location l, int level, Source source) {
         org.bukkit.entity.Mob e = (org.bukkit.entity.Mob) l.getWorld().spawnEntity(l, type);
         if (source == null) {
-            source = new EntitySource(e);
+            source = new EntitySource(e, new ItemStack(Material.CARROT));
         }
         EntityTarget target = new EntityTarget(e);
         e.getPersistentDataContainer().set(new NamespacedKey(SupremeMob.getInstance(), "mob"),

@@ -6,7 +6,9 @@ import com.github.jummes.supremeitem.action.targeter.EntityTarget;
 import com.github.jummes.supremeitem.libs.annotation.Enumerable;
 import com.github.jummes.supremeitem.libs.annotation.Serializable;
 import com.google.common.collect.Lists;
+import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 import java.util.Map;
@@ -40,7 +42,7 @@ public class InteractActuator extends CooldownActuator {
 
     @Override
     protected void executeExactSkill(Map<String, Object> map, LivingEntity... e) {
-        onEntityActions.forEach(action -> action.execute(new EntityTarget(e[0]), new EntitySource(e[0]), map));
-        onInteractorActions.forEach(action -> action.execute(new EntityTarget(e[1]), new EntitySource(e[0]), map));
+        onEntityActions.forEach(action -> action.execute(new EntityTarget(e[0]), new EntitySource(e[0], new ItemStack(Material.CARROT)), map));
+        onInteractorActions.forEach(action -> action.execute(new EntityTarget(e[1]), new EntitySource(e[0], new ItemStack(Material.CARROT)), map));
     }
 }

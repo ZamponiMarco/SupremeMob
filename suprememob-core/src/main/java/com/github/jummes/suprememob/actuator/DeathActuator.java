@@ -6,7 +6,9 @@ import com.github.jummes.supremeitem.action.targeter.EntityTarget;
 import com.github.jummes.supremeitem.libs.annotation.Enumerable;
 import com.github.jummes.supremeitem.libs.annotation.Serializable;
 import com.google.common.collect.Lists;
+import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 import java.util.Map;
@@ -38,10 +40,10 @@ public class DeathActuator extends Actuator {
     }
 
     public void executeSkill(Map<String, Object> map, LivingEntity mob, LivingEntity killer) {
-        onEntityActions.forEach(action -> action.execute(new EntityTarget(mob), new EntitySource(mob), map));
+        onEntityActions.forEach(action -> action.execute(new EntityTarget(mob), new EntitySource(mob, new ItemStack(Material.CARROT)), map));
 
         if (killer != null) {
-            onKillerActions.forEach(action -> action.execute(new EntityTarget(killer), new EntitySource(mob), map));
+            onKillerActions.forEach(action -> action.execute(new EntityTarget(killer), new EntitySource(mob, new ItemStack(Material.CARROT)), map));
         }
     }
 

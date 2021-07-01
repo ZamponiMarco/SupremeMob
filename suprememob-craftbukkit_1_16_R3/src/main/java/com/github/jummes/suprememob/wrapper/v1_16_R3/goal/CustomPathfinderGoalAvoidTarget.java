@@ -7,9 +7,11 @@ import net.minecraft.server.v1_16_R3.EntityCreature;
 import net.minecraft.server.v1_16_R3.EntityLiving;
 import net.minecraft.server.v1_16_R3.PathfinderGoalAvoidTarget;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.inventory.ItemStack;
 
 public class CustomPathfinderGoalAvoidTarget<T extends EntityLiving> extends PathfinderGoalAvoidTarget<T> {
 
@@ -25,6 +27,6 @@ public class CustomPathfinderGoalAvoidTarget<T extends EntityLiving> extends Pat
     public boolean a() {
         return super.a() && canUse.checkCondition(
                 new EntityTarget((LivingEntity) CraftEntity.getEntity((CraftServer) Bukkit.getServer(), this.a.getGoalTarget())),
-                new EntitySource((LivingEntity) CraftEntity.getEntity((CraftServer) Bukkit.getServer(), this.a)));
+                new EntitySource((LivingEntity) CraftEntity.getEntity((CraftServer) Bukkit.getServer(), this.a), new ItemStack(Material.CARROT)));
     }
 }

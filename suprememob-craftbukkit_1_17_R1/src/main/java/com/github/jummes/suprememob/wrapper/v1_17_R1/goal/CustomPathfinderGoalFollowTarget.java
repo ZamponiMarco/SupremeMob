@@ -11,9 +11,11 @@ import net.minecraft.world.entity.ai.navigation.NavigationAbstract;
 import net.minecraft.world.level.pathfinder.PathType;
 import org.apache.commons.lang.reflect.FieldUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -32,7 +34,7 @@ public class CustomPathfinderGoalFollowTarget extends PathfinderGoalFollowEntity
         this.condition = condition;
         pr = entityLiving -> condition.checkCondition(
                 new EntityTarget((LivingEntity) CraftEntity.getEntity((CraftServer) Bukkit.getServer(), entityLiving)),
-                new EntitySource((LivingEntity) CraftEntity.getEntity((CraftServer) Bukkit.getServer(), var0)));
+                new EntitySource((LivingEntity) CraftEntity.getEntity((CraftServer) Bukkit.getServer(), var0), new ItemStack(Material.CARROT)));
     }
 
     public boolean a() {
