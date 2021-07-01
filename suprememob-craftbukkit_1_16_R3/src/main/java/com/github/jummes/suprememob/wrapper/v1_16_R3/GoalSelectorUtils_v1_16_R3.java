@@ -9,6 +9,7 @@ import com.github.jummes.suprememob.wrapper.v1_16_R3.goal.CustomPathfinderGoalRa
 import lombok.SneakyThrows;
 import net.minecraft.server.v1_16_R3.EntityCreature;
 import net.minecraft.server.v1_16_R3.EntityInsentient;
+import net.minecraft.server.v1_16_R3.PathfinderGoalFloat;
 import net.minecraft.server.v1_16_R3.PathfinderGoalWrapped;
 import org.apache.commons.lang.reflect.FieldUtils;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
@@ -49,6 +50,12 @@ public class GoalSelectorUtils_v1_16_R3 implements GoalSelectorUtils {
         EntityCreature entity = (EntityCreature) ((CraftEntity) mob).getHandle();
         entity.goalSelector.a(nextId(entity.goalSelector.d()), new CustomPathfinderGoalFollowTarget(entity, speedModifier,
                 stopDistance, areaSize, condition));
+    }
+
+    @Override
+    public void setFloat(Mob mob) {
+        EntityCreature entity = (EntityCreature) ((CraftEntity) mob).getHandle();
+        entity.goalSelector.a(nextId(entity.goalSelector.d()), new PathfinderGoalFloat(entity));
     }
 
     @SneakyThrows

@@ -15,6 +15,8 @@ public interface GoalSelectorUtils {
 
     void setFollowTarget(Mob mob, double speedModifier, float stopDistance, float areaSize, Condition condition);
 
+    void setFloat(Mob mob);
+
     void clearEntityGoals(Mob mob);
 
 }

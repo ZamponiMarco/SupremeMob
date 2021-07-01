@@ -13,7 +13,7 @@ import org.bukkit.entity.Mob;
 import java.util.Map;
 
 @Enumerable.Child
-@Enumerable.Displayable
+@Enumerable.Displayable(name = "&6&lFollow target &cgoal selector", description = "gui.goal-selector.follow.description", headTexture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjlkMWQzMTEzZWM0M2FjMjk2MWRkNTlmMjgxNzVmYjQ3MTg4NzNjNmM0NDhkZmNhODcyMjMxN2Q2NyJ9fX0=")
 public class FollowTargetGoalSelector extends ConditionalGoalSelector{
 
     @Serializable(headTexture = HeadUtils.ATTENTION_HEAD, description = "gui.additional-tooltips.unknown")

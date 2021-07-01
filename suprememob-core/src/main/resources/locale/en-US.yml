@@ -114,6 +114,14 @@ gui:
       distance:
         - "&7&oThe maximum distance from the target the entity"
         - "&7&owill reach."
+    float:
+      description:
+        - "&7&oSet a goal selector that makes the entity"
+        - "&7&ofloat on water (otherwise they will drown)."
+    follow:
+      description:
+        - "&7&oSet a goal selector that makes the entity"
+        - "&7&ofollow their target."
   actuator:
     entity-actions:
       - "&7&oThe list of actions executed on the"

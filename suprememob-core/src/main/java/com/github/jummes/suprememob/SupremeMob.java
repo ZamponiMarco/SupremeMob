@@ -59,13 +59,7 @@ public class SupremeMob extends JavaPlugin {
 
         ConfigurationSerialization.registerClass(Actuator.class);
 
-        ConfigurationSerialization.registerClass(TargetSelector.class,
-                "com.github.jummes.suprememob.target.TargetSelector");
-        ConfigurationSerialization.registerClass(ClearTargetSelector.class,
-                "com.github.jummes.suprememob.target.ClearTargetSelector");
-        ConfigurationSerialization.registerClass(NearestAttackableTargetSelector.class,
-                "com.github.jummes.suprememob.target.NearestAttackableTargetSelector");
-
+        ConfigurationSerialization.registerClass(TargetSelector.class);
         ConfigurationSerialization.registerClass(GoalSelector.class);
 
         ConfigurationSerialization.registerClass(DropTable.class);

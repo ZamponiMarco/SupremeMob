@@ -13,7 +13,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Map;
 
 @Enumerable.Parent(classArray = {ConditionalGoalSelector.class, ClearGoalSelector.class, MeleeAttackGoalSelector.class,
-        RandomStrollLandGoalSelector.class, AvoidTargetGoalSelector.class, FollowTargetGoalSelector.class})
+        RandomStrollLandGoalSelector.class, AvoidTargetGoalSelector.class, FollowTargetGoalSelector.class,
+        FloatGoalSelector.class})
 public abstract class GoalSelector implements Model {
 
     protected static final NumericValue SPEED_DEFAULT = new NumericValue(1);
