@@ -122,6 +122,12 @@ gui:
       description:
         - "&7&oSet a goal selector that makes the entity"
         - "&7&ofollow their target."
+    projectile:
+      description:
+        - "&7&oSet a goal selector that maked the entity"
+        - "&7&oshoot projectiles."
+      projectile:
+        - "&7&oThe projectile to shoot."
   actuator:
     entity-actions:
       - "&7&oThe list of actions executed on the"

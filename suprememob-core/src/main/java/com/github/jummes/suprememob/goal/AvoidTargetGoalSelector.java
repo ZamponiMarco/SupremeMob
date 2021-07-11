@@ -29,29 +29,24 @@ public class AvoidTargetGoalSelector extends ConditionalGoalSelector {
 
     private static final String SPRINT_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzJhN2RjYmY3ZWNhNmI2ZjYzODY1OTFkMjM3OTkxY2ExYjg4OGE0ZjBjNzUzZmY5YTMyMDJjZjBlOTIyMjllMyJ9fX0=";
 
-    @Serializable(displayItem = "typeHead", description = "gui.goal-selector.avoid.entity", stringValue = true, fromList = "getSpawnableEntities", fromListMapper = "spawnableEntitiesMapper")
-    private EntityType type;
     @Serializable(headTexture = SPEED_HEAD, description = "gui.goal-selector.speed")
     private NumericValue walkSpeedModifier;
     @Serializable(headTexture = SPRINT_HEAD, description = "gui.goal-selector.avoid.sprint")
     private NumericValue sprintSpeedModifier;
 
     public AvoidTargetGoalSelector() {
-        this(CONDITION_DEFAULT.clone(), EntityType.PLAYER, WALK_DEFAULT.clone(),
+        this(CONDITION_DEFAULT.clone(), WALK_DEFAULT.clone(),
                 SPRINT_DEFAULT.clone());
     }
 
     public AvoidTargetGoalSelector(Map<String, Object> map) {
         super(map);
-        this.type = EntityType.valueOf((String) map.getOrDefault("type", "PLAYER"));
         this.walkSpeedModifier = (NumericValue) map.getOrDefault("walkSpeedModifier", WALK_DEFAULT.clone());
         this.sprintSpeedModifier = (NumericValue) map.getOrDefault("sprintSpeedModifier", SPRINT_DEFAULT.clone());
     }
 
-    public AvoidTargetGoalSelector(Condition condition, EntityType type,
-                                   NumericValue walkSpeedModifier, NumericValue sprintSpeedModifier) {
+    public AvoidTargetGoalSelector(Condition condition, NumericValue walkSpeedModifier, NumericValue sprintSpeedModifier) {
         super(condition);
-        this.type = type;
         this.walkSpeedModifier = walkSpeedModifier;
         this.sprintSpeedModifier = sprintSpeedModifier;
     }

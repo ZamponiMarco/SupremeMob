@@ -48,9 +48,10 @@ public class MobListener implements Listener {
 
         Mob damager = Mob.fromEntity(damagerEntity);
         if (damager != null) {
+            LivingEntity finalDamagerEntity = damagerEntity;
             damager.getActuators().stream().filter(actuator -> actuator instanceof HitActuator).findFirst().
                     ifPresent(actuator -> ((HitActuator) actuator).
-                            getActuatorResult(map, (LivingEntity) e.getDamager(), (LivingEntity) e.getDamager(),
+                            getActuatorResult(map, finalDamagerEntity, finalDamagerEntity,
                                     (LivingEntity) e.getEntity()));
         }
 

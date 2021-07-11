@@ -17,10 +17,10 @@ import java.util.Map;
 @Enumerable.Displayable(name = "&6&lDamage &cactuator", description = "gui.actuator.damage.description", headTexture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjUyNTU5ZjJiY2VhZDk4M2Y0YjY1NjFjMmI1ZjJiNTg4ZjBkNjExNmQ0NDY2NmNlZmYxMjAyMDc5ZDI3Y2E3NCJ9fX0=")
 public class DamageActuator extends CooldownActuator {
 
-    @Serializable(headTexture = DAMAGED_HEAD, description = "gui.skill.damage-entity.damaged-actions")
+    @Serializable(headTexture = DAMAGED_HEAD, description = "gui.skill.combat.damage-entity.damaged-actions")
     @Serializable.Optional(defaultValue = "ACTIONS_DEFAULT")
     private List<Action> onDamagedActions;
-    @Serializable(headTexture = DAMAGER_HEAD, description = "gui.skill.damage-entity.damager-actions")
+    @Serializable(headTexture = DAMAGER_HEAD, description = "gui.skill.combat.damage-entity.damager-actions")
     @Serializable.Optional(defaultValue = "ACTIONS_DEFAULT")
     private List<Action> onDamagerActions;
 
