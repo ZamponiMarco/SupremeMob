@@ -5,7 +5,6 @@ import com.github.jummes.supremeitem.action.targeter.Target;
 import com.github.jummes.supremeitem.libs.annotation.Serializable;
 import com.github.jummes.supremeitem.libs.model.Model;
 import com.github.jummes.supremeitem.value.NumericValue;
-import com.github.jummes.suprememob.SupremeMob;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.LivingEntity;
@@ -75,13 +74,14 @@ public class AttributeOptions implements Model {
     private void setAttribute(Attribute attribute, LivingEntity entity, double value) {
         AttributeInstance inst = entity.getAttribute(attribute);
 
-        if (value == -1) {
-            return;
-        }
 
         if (inst == null) {
-            SupremeMob.getInstance().getWrapper().getAttributeUtils().registerAttribute(attribute, entity);
+            entity.registerAttribute(attribute);
             inst = entity.getAttribute(attribute);
+        }
+
+        if (value == -1 || inst == null) {
+            return;
         }
 
         inst.setBaseValue(value);

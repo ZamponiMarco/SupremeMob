@@ -1,9 +1,11 @@
 package com.github.jummes.suprememob.targetted;
 
+import com.destroystokyo.paper.entity.ai.GoalType;
 import com.github.jummes.supremeitem.action.source.Source;
 import com.github.jummes.supremeitem.action.targeter.Target;
 import com.github.jummes.supremeitem.libs.annotation.Enumerable;
 import com.github.jummes.suprememob.SupremeMob;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Mob;
 
 import java.util.Map;
@@ -22,7 +24,7 @@ public class ClearTargetSelector extends TargetSelector {
 
     @Override
     public void applyToEntity(Mob e, Source source, Target target) {
-        SupremeMob.getInstance().getWrapper().getTargetSelector().clearEntityTargets(e);
+        Bukkit.getMobGoals().removeAllGoals(e, GoalType.TARGET);
     }
 
     @Override

@@ -18,6 +18,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.SneakyThrows;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -79,7 +80,7 @@ public class Mob extends NamedModel {
         do {
             name = "mob" + counter;
             counter++;
-        } while (SupremeItem.getInstance().getSavedSkillManager().getByName(name) != null);
+        } while (SupremeMob.getInstance().getMobManager().getByName(name) != null);
         return name;
     }
 

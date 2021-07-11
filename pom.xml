@@ -13,8 +13,6 @@
     </properties>
     <modules>
         <module>suprememob-core</module>
-        <module>suprememob-craftbukkit_1_16_R3</module>
-        <module>suprememob-craftbukkit_1_17_R1</module>
         <module>suprememob-dist</module>
     </modules>
     <dependencies>

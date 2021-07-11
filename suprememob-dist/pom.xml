@@ -74,15 +74,5 @@
             <artifactId>suprememob-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.jummes</groupId>
-            <artifactId>suprememob-craftbukkit_1_16_R3</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.jummes</groupId>
-            <artifactId>suprememob-craftbukkit_1_17_R1</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
     </dependencies>
 </project>

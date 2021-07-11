@@ -26,10 +26,7 @@ import com.github.jummes.suprememob.mob.options.BehaviorOptions;
 import com.github.jummes.suprememob.mob.options.EquipmentOptions;
 import com.github.jummes.suprememob.mob.options.GeneralOptions;
 import com.github.jummes.suprememob.spawner.Spawner;
-import com.github.jummes.suprememob.targetted.ClearTargetSelector;
-import com.github.jummes.suprememob.targetted.NearestAttackableTargetSelector;
 import com.github.jummes.suprememob.targetted.TargetSelector;
-import com.github.jummes.suprememob.wrapper.VersionWrapper;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
@@ -71,7 +68,6 @@ public class SupremeMob extends JavaPlugin {
     private MobManager mobManager;
     private SpawnerManager spawnerManager;
     private CooldownManager cooldownManager;
-    private VersionWrapper wrapper;
 
     public static SupremeMob getInstance() {
         return getPlugin(SupremeMob.class);
@@ -83,7 +79,6 @@ public class SupremeMob extends JavaPlugin {
         setUpData();
         setUpListener();
         setUpCommands();
-        setUpWrapper();
     }
 
     @Override
@@ -112,9 +107,5 @@ public class SupremeMob extends JavaPlugin {
         ex.registerCommand("spawners", SpawnerListCommand.class);
         ex.registerCommand("spawn", MobSpawnCommand.class);
         getCommand("sm").setExecutor(ex);
-    }
-
-    private void setUpWrapper() {
-        this.wrapper = new VersionWrapper();
     }
 }

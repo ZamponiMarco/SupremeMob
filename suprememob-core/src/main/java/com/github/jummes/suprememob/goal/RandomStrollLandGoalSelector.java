@@ -22,29 +22,22 @@ public class RandomStrollLandGoalSelector extends ConditionalGoalSelector {
     @Serializable.Optional(defaultValue = "SPEED_DEFAULT")
     private NumericValue speed;
 
-    @Serializable(headTexture = HeadUtils.ATTENTION_HEAD, description = "gui.additional-tooltips.unknown")
-    private NumericValue probability;
-
     public RandomStrollLandGoalSelector() {
-        this(CONDITION_DEFAULT.clone(), SPEED_DEFAULT.clone(), PROBABILITY_DEFAULT.clone());
+        this(CONDITION_DEFAULT.clone(), SPEED_DEFAULT.clone());
     }
 
     public RandomStrollLandGoalSelector(Map<String, Object> map) {
         super(map);
         this.speed = (NumericValue) map.getOrDefault("speed", SPEED_DEFAULT.clone());
-        this.probability = (NumericValue) map.getOrDefault("probability", PROBABILITY_DEFAULT.clone());
     }
 
-    public RandomStrollLandGoalSelector(Condition condition, NumericValue speed, NumericValue probability) {
+    public RandomStrollLandGoalSelector(Condition condition, NumericValue speed) {
         super(condition);
         this.speed = speed;
-        this.probability = probability;
     }
 
     @Override
     public void applyToEntity(Mob e, Source source, Target target) {
-        SupremeMob.getInstance().getWrapper().getGoalSelector().setRandomStrollLand(e,
-                speed.getRealValue(target, source), probability.getRealValue(target, source).floatValue(), condition);
     }
 
     @Override

@@ -4,6 +4,9 @@ import com.github.jummes.supremeitem.action.source.Source;
 import com.github.jummes.supremeitem.action.targeter.Target;
 import com.github.jummes.supremeitem.libs.annotation.Enumerable;
 import com.github.jummes.suprememob.SupremeMob;
+import com.github.jummes.suprememob.goal.impl.CustomAvoidTargetGoal;
+import com.github.jummes.suprememob.goal.impl.CustomFloatTargetGoal;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Mob;
 
 import java.util.Map;
@@ -21,7 +24,8 @@ public class FloatGoalSelector extends GoalSelector{
 
     @Override
     public void applyToEntity(Mob e, Source source, Target target) {
-        SupremeMob.getInstance().getWrapper().getGoalSelector().setFloat(e);
+        int currentSize = Bukkit.getMobGoals().getAllGoals(e).size();
+        Bukkit.getMobGoals().addGoal(e, currentSize, new CustomFloatTargetGoal(e));
     }
 
     @Override
